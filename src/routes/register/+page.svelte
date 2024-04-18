@@ -7,7 +7,7 @@
 <div class="global-background">
     <img src="/images/wise-logo.png" alt="wise-logo">
     <CountForm/>
-    <ChangeLog textButton="Connexion" textChange="Pas encore inscrit ?" textLink="S'inscrire" link="/register"/>
+    <ChangeLog textButton="S'inscrire" textChange="Déjà un compte ?" textLink="Se connecter" link="/"/>
 </div>
 
 <style>
