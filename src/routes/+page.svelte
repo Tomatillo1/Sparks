@@ -1,2 +1,15 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<div class="global-background">
+
+</div>
+
+<style>
+    .global-background {
+        background-image: url("/images/background-wise.svg") ;
+        width: 100%;
+        height: 100svh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
+    }
+</style>
