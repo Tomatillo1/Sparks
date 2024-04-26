@@ -1,29 +1,21 @@
 <script>
-    import {goto} from "$app/navigation";
-    import {loginStore} from "$lib/stores/login.store.js";
-
     export let textButton;
     export let textChange;
     export let textLink;
     export let link;
 
-    let bool = false
+    export let whatPage;
+    export let error;
 
-    function goHome() {
-        if ($loginStore.username !== '' && $loginStore.password !== '') {
-            goto("/home")
-        } else {
-            bool = true
-            console.log(bool)
-        }
-    }
+
+
 
 </script>
-{#if bool === true}
+{#if error === true}
     <p class="error">Un nom d'utilisateur ou mot de passe est vide !</p>
 {/if}
 <div class="globalValidation">
-    <button class="buttonRegisterLogin" on:click={goHome}>{textButton}</button>
+    <button class="buttonRegisterLogin" on:click={whatPage}>{textButton}</button>
     <p class="notRegisterOrAccount">{textChange}</p>
     <a href="{link}">{textLink}</a>
 </div>
@@ -43,7 +35,7 @@
         border: 1px solid #41C1BA;
         background-color: #FFFFFF;
         color: #41C1BA;
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         padding: 0.5rem 2rem;
         font-family: Poppins, sans-serif;
     }
@@ -51,7 +43,7 @@
     .notRegisterOrAccount {
         color: #41C1BA;
         font-family: Poppins, sans-serif;
-        font-size: 1rem;
+        font-size: 1.25rem;
         text-shadow: 1px 1px 1px #a9cbec;
         margin: 1rem 0 0 0;
     }

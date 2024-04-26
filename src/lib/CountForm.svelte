@@ -1,24 +1,34 @@
 <script>
     import {loginStore} from "$lib/stores/login.store.js";
 
-    function usernameChange (e) {
+    function emailChange (e) {
         loginStore.update((old) => ({
-            username: e.target.value,
+            email: e.target.value,
             password: old.password,
+            firstName: old.firstName,
+            lastName: old.lastName,
+            phone: old.phone,
+            payment: old.payment,
+            birth: old.birth,
         }))
     }
 
     function passwordChange (e) {
         loginStore.update((old) => ({
-            username: old.username,
+            email: old.email,
             password: e.target.value,
+            firstName: old.firstName,
+            lastName: old.lastName,
+            phone: old.phone,
+            payment: old.payment,
+            birth: old.birth,
         }))
     }
 
 </script>
 <div class="globalForm">
-    <label for="nameID" class="labelNameID">Nom d'utilisateur</label>
-    <input type="text" class="nameID" name="nameID" placeholder="Nom d'utilisateur" maxlength="8" on:input={usernameChange}>
+    <label for="nameID" class="labelNameID">Email</label>
+    <input type="email" class="nameID" name="nameID" placeholder="Email" maxlength="20" on:input={emailChange}>
     <label for="passwordID" class="labelpasswordID">Mot de passe</label>
     <input type="password" class="passwordID" name="passwordID" placeholder="Mot de passe" maxlength="8" on:input={passwordChange}>
     <a href="/forget-password">Mot de passe oublié ?</a>
@@ -50,7 +60,7 @@
         color: #FFFFFF;
         font-family: Poppins, sans-serif;
         opacity: 0.8;
-        font-size: 0.65rem;
+        font-size: 0.85rem;
     }
 
     .passwordID:focus, .nameID:focus {
@@ -67,14 +77,14 @@
         font-family: Poppins, sans-serif;
         color: #328DE8;
         padding-left: 0.5rem;
-        font-size: 0.85rem;
+        font-size: 1rem;
         text-shadow: 1px 1px 1px #a9cbec;
     }
 
     a {
         color: #328DE8;
         font-family: Poppins, sans-serif;
-        font-size: 0.65rem;
+        font-size: 0.85rem;
         font-style: italic;
         padding-left: 0.5rem;
         margin-top: 0.5rem;

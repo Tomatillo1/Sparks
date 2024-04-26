@@ -1,13 +1,23 @@
 <script>
     import CountForm from "$lib/CountForm.svelte";
     import ChangeLog from "$lib/ChangeLog.svelte";
+    import {goto} from "$app/navigation";
+    import {loginStore} from "$lib/stores/login.store.js";
+
+    let bool1 = false
+    function goHome() {
+        if ($loginStore.username !== '' && $loginStore.password !== '') {
+            goto("/home")
+        } else {
+            bool1 = true
+        }
+    }
 
 </script>
-
 <div class="global-background">
     <img src="/images/wise-logo.png" alt="wise-logo">
     <CountForm/>
-    <ChangeLog textButton="Connexion" textChange="Pas encore inscrit ?" textLink="S'inscrire" link="/register"/>
+    <ChangeLog textButton="Connexion" textChange="Pas encore inscrit ?" textLink="S'inscrire" whatPage={goHome} error={bool1} link="/register"/>
 </div>
 
 <style>
