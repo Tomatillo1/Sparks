@@ -24,8 +24,8 @@
 
 <div id="navbar">
     <button class="buttonNavbar"><img src="/navbar/halteres.png" alt="" on:click={trainingPage}></button>
-    <button class="buttonNavbar"><img src="/navbar/sifllet.png" alt="" on:click={coachingPage}></button>
-    <button class="buttonNavbar"><img src="/navbar/home-blue.png" alt="" on:click={homePage}></button>
+    <button class="buttonNavbar"><img src="/navbar/sifllet-blue.png" alt="" on:click={coachingPage}></button>
+    <button class="buttonNavbar"><img src="/navbar/home.png" alt="" on:click={homePage}></button>
     <button class="buttonNavbar"><img src="/navbar/stats.png" alt="" on:click={statisticsPage}></button>
     <button class="buttonNavbar"><img src="/navbar/profil.png" alt="" on:click={accountPage}></button>
 </div>

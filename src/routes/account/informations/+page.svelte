@@ -2,19 +2,31 @@
     import InformationsForm from "$lib/InformationsForm.svelte";
     import {goto} from "$app/navigation";
     import {loginStore} from "$lib/stores/login.store.js";
+    import Loading from "$lib/Loading.svelte";
 
     let error = false;
+    let load = false
 
     function validate() {
         if ($loginStore.email === '' || $loginStore.password === '' || $loginStore.firstName === '' || $loginStore.lastName === '' || $loginStore.birth === '') {
             error = true;
         } else {
-            goto("/account")
+            load = true;
+            setTimeout(save, 1000)
         }
+    }
+
+    function save() {
+        goto("/account")
     }
 </script>
 
 <div class="global-background">
+    {#if (load === true)}
+        <div class="loadPop">
+            <Loading/>
+        </div>
+    {/if}
     <img class="backGroundSup" src="/images/design-superieur-wise.png" alt="">
     <img class="backGroundInf" src="/images/design-inferieur-wise.png" alt="">
     <img class="logo" src="/images/wise-logo.png" alt="wise-logo">
@@ -75,5 +87,11 @@
         position: absolute;
         left: 0;
         bottom: 0;
+        z-index: -1;
+    }
+
+    .loadPop {
+        display: flex;
+        width: 100%;
     }
 </style>

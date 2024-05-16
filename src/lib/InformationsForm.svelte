@@ -145,6 +145,7 @@
         flex-direction: column;
         align-items: start;
         width: 80%;
+        z-index: 1;
     }
 
     .telID, .lastName, .firstName, .emailID, .payement, .birthday, .password {
