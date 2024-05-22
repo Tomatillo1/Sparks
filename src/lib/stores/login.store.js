@@ -1,11 +1,11 @@
 import {writable} from "svelte/store";
 
 export const loginStore = writable({
-    email: "",
-    password: "",
+    email: "totofarkas@gmail.com",
+    password: "1234",
     phone: "",
-    firstName: "",
-    lastName: "",
-    birth: "",
+    firstName: "Thomas",
+    lastName: "Farkas",
+    birth: "11/05/2003",
     payment: "",
 });

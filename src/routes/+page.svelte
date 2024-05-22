@@ -6,7 +6,7 @@
 
     let bool1 = false
     function goHome() {
-        if ($loginStore.username !== '' && $loginStore.password !== '') {
+        if ($loginStore.email !== '' && $loginStore.password !== '') {
             goto("/home")
         } else {
             bool1 = true

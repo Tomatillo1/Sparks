@@ -7,11 +7,24 @@
     let bool2 = false
 
     function goAccountForm() {
-        if ($loginStore.username !== '' && $loginStore.password !== '') {
+        if ($loginStore.email !== '' && $loginStore.password !== '') {
             goto("/account/informations")
+            resetData()
         } else {
             bool2 = true
         }
+    }
+
+    function resetData () {
+        loginStore.update((old) => ({
+            email: old.email,
+            password: old.password,
+            firstName: "",
+            lastName: "",
+            phone: old.phone,
+            payment: old.payment,
+            birth: "",
+        }))
     }
 
 </script>
