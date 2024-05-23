@@ -1,6 +1,4 @@
 <script>
-    import {goto} from "$app/navigation";
-
     export let whatVideo;
     export let whatLink;
 

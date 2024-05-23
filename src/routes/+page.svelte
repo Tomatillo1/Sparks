@@ -8,11 +8,22 @@
     function goHome() {
         if ($loginStore.email !== '' && $loginStore.password !== '') {
             goto("/home")
+            addData()
         } else {
             bool1 = true
         }
     }
-
+    function addData () {
+        loginStore.update((old) => ({
+            email: old.email,
+            password: old.password,
+            firstName: "Thomas",
+            lastName: "Farkas",
+            phone: old.phone,
+            payment: old.payment,
+            birth: "11/05/2003",
+        }))
+    }
 </script>
 <div class="global-background">
     <img src="/images/wise-logo.png" alt="wise-logo">
