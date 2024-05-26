@@ -1,13 +1,17 @@
 <script>
     import {goto} from "$app/navigation";
     import {offerStore} from "$lib/stores/offer.store.js";
+    import {loginStore} from "$lib/stores/login.store.js";
     import Loading from "$lib/Loading.svelte";
+    import SvgOffer from "$lib/SvgOffer.svelte";
+    import NoPayment from "$lib/NoPayment.svelte";
 
     let wichOffer = $offerStore.offer;
     let defaultOffer = $offerStore.selected;
     let changeCard = $offerStore.card;
     let whatCard = 'Basique';
     let load = false;
+    let payment = false;
 
     function backToAccount() {
         goto("/account")
@@ -59,16 +63,30 @@
 
     function changeOffer() {
         load = false
-        wichOffer = whatCard
-        defaultOffer = 'Séléctionnée'
-        offerStore.update((old) => ({
-            offer: wichOffer,
-            selected: defaultOffer,
-            card: changeCard,
-        }))
+        if ($loginStore.payment === '') {
+            payment = true
+        } else {
+            wichOffer = whatCard
+            defaultOffer = 'Séléctionnée'
+            offerStore.update((old) => ({
+                offer: wichOffer,
+                selected: defaultOffer,
+                card: changeCard,
+            }))
+        }
     }
 
+    function closePayment() {
+        payment = false
+    }
 </script>
+
+{#if (payment === true)}
+    <div class="paymentPop">
+        <NoPayment {closePayment}/>
+    </div>
+{/if}
+
 {#if (load === true)}
     <div class="loadPop">
         <Loading/>
@@ -84,183 +102,107 @@
     </div>
     {#if (changeCard === 1)}
         <div class="offers">
-            <img class="arrows" src="/images/arrow-left.png" on:click={goLeft}>
+            <img class="arrows-left" src="/images/arrow-left.png" on:click={goLeft}>
             <div class="card freeCard">
                 <p class="titleWhatOffer">
                     Offre Basique</p>
                 <p class="price">Gratuit</p>
                 <ul class="lists">
                     <li class="list">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
-                            <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path fill="#ffffff"
-                                      d="M21.5821 5.54289C21.9726 5.93342 21.9726 6.56658 21.5821 6.95711L10.2526 18.2867C9.86452 18.6747 9.23627 18.6775 8.84475 18.293L2.29929 11.8644C1.90527 11.4774 1.89956 10.8443 2.28655 10.4503C2.67354 10.0562 3.30668 10.0505 3.70071 10.4375L9.53911 16.1717L20.1679 5.54289C20.5584 5.15237 21.1916 5.15237 21.5821 5.54289Z"
-                                      clip-rule="evenodd" fill-rule="evenodd"></path>
-                            </g>
-                        </svg>
-                        <span>Fréquence cardiaque sur les deux dernières semaines.</span>
+                        <SvgOffer/>
+                        <span>Fréquence cardiaque des 2 dernières semaines</span>
                     </li>
                     <li class="list">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
-                            <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path fill="#ffffff"
-                                      d="M21.5821 5.54289C21.9726 5.93342 21.9726 6.56658 21.5821 6.95711L10.2526 18.2867C9.86452 18.6747 9.23627 18.6775 8.84475 18.293L2.29929 11.8644C1.90527 11.4774 1.89956 10.8443 2.28655 10.4503C2.67354 10.0562 3.30668 10.0505 3.70071 10.4375L9.53911 16.1717L20.1679 5.54289C20.5584 5.15237 21.1916 5.15237 21.5821 5.54289Z"
-                                      clip-rule="evenodd" fill-rule="evenodd"></path>
-                            </g>
-                        </svg>
-                        <span>Podomètre et historique de pas des 2 dernières semaines.</span>
+                        <SvgOffer/>
+                        <span>Podomètre et historique de pas des 2 dernières semaines</span>
                     </li>
                     <li class="list">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
-                            <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path fill="#ffffff"
-                                      d="M21.5821 5.54289C21.9726 5.93342 21.9726 6.56658 21.5821 6.95711L10.2526 18.2867C9.86452 18.6747 9.23627 18.6775 8.84475 18.293L2.29929 11.8644C1.90527 11.4774 1.89956 10.8443 2.28655 10.4503C2.67354 10.0562 3.30668 10.0505 3.70071 10.4375L9.53911 16.1717L20.1679 5.54289C20.5584 5.15237 21.1916 5.15237 21.5821 5.54289Z"
-                                      clip-rule="evenodd" fill-rule="evenodd"></path>
-                            </g>
-                        </svg>
-                        <span>Accès à certaines vidéos de présentation des exercices.</span>
+                        <SvgOffer/>
+                        <span>Accès à certaines vidéos de présentation des exercices</span>
                     </li>
                     <li class="list">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
-                            <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path fill="#ffffff"
-                                      d="M21.5821 5.54289C21.9726 5.93342 21.9726 6.56658 21.5821 6.95711L10.2526 18.2867C9.86452 18.6747 9.23627 18.6775 8.84475 18.293L2.29929 11.8644C1.90527 11.4774 1.89956 10.8443 2.28655 10.4503C2.67354 10.0562 3.30668 10.0505 3.70071 10.4375L9.53911 16.1717L20.1679 5.54289C20.5584 5.15237 21.1916 5.15237 21.5821 5.54289Z"
-                                      clip-rule="evenodd" fill-rule="evenodd"></path>
-                            </g>
-                        </svg>
-                        <span>Présentation de tous les services de WISE Neural et Vital.</span>
+                        <SvgOffer/>
+                        <span>Présentation de tous les services de WISE (Neural et Vital)</span>
                     </li>
                 </ul>
             </div>
-            <img class="arrows" src="/images/arrow-right.png" on:click={goRight}>
+            <img class="arrows-right" src="/images/arrow-right.png" on:click={goRight}>
         </div>
         {:else if (changeCard === 2)}
         <div class="offers">
-            <img class="arrows" src="/images/arrow-left.png" on:click={goLeft}>
+            <img class="arrows-left" src="/images/arrow-left.png" on:click={goLeft}>
             <div class="card standardCard">
                 <p class="titleWhatOffer">
-                    Offre Basique</p>
-                <p class="price">Gratuit</p>
+                    Offre Standard</p>
+                <p class="price">10 € / mois</p>
                 <ul class="lists">
                     <li class="list">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
-                            <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path fill="#ffffff"
-                                      d="M21.5821 5.54289C21.9726 5.93342 21.9726 6.56658 21.5821 6.95711L10.2526 18.2867C9.86452 18.6747 9.23627 18.6775 8.84475 18.293L2.29929 11.8644C1.90527 11.4774 1.89956 10.8443 2.28655 10.4503C2.67354 10.0562 3.30668 10.0505 3.70071 10.4375L9.53911 16.1717L20.1679 5.54289C20.5584 5.15237 21.1916 5.15237 21.5821 5.54289Z"
-                                      clip-rule="evenodd" fill-rule="evenodd"></path>
-                            </g>
-                        </svg>
-                        <span>Fréquence cardiaque sur les deux dernières semaines.</span>
+                        <SvgOffer/>
+                        <span>Offre Basique</span>
                     </li>
                     <li class="list">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
-                            <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path fill="#ffffff"
-                                      d="M21.5821 5.54289C21.9726 5.93342 21.9726 6.56658 21.5821 6.95711L10.2526 18.2867C9.86452 18.6747 9.23627 18.6775 8.84475 18.293L2.29929 11.8644C1.90527 11.4774 1.89956 10.8443 2.28655 10.4503C2.67354 10.0562 3.30668 10.0505 3.70071 10.4375L9.53911 16.1717L20.1679 5.54289C20.5584 5.15237 21.1916 5.15237 21.5821 5.54289Z"
-                                      clip-rule="evenodd" fill-rule="evenodd"></path>
-                            </g>
-                        </svg>
-                        <span>Podomètre et historique de pas des 2 dernières semaines.</span>
+                        <SvgOffer/>
+                        <span>Historique illimité d'activité</span>
                     </li>
                     <li class="list">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
-                            <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path fill="#ffffff"
-                                      d="M21.5821 5.54289C21.9726 5.93342 21.9726 6.56658 21.5821 6.95711L10.2526 18.2867C9.86452 18.6747 9.23627 18.6775 8.84475 18.293L2.29929 11.8644C1.90527 11.4774 1.89956 10.8443 2.28655 10.4503C2.67354 10.0562 3.30668 10.0505 3.70071 10.4375L9.53911 16.1717L20.1679 5.54289C20.5584 5.15237 21.1916 5.15237 21.5821 5.54289Z"
-                                      clip-rule="evenodd" fill-rule="evenodd"></path>
-                            </g>
-                        </svg>
-                        <span>Accès à certaines vidéos de présentation des exercices.</span>
+                        <SvgOffer/>
+                        <span>Accès à des centaines de vidéos supplémentaires</span>
                     </li>
                     <li class="list">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
-                            <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path fill="#ffffff"
-                                      d="M21.5821 5.54289C21.9726 5.93342 21.9726 6.56658 21.5821 6.95711L10.2526 18.2867C9.86452 18.6747 9.23627 18.6775 8.84475 18.293L2.29929 11.8644C1.90527 11.4774 1.89956 10.8443 2.28655 10.4503C2.67354 10.0562 3.30668 10.0505 3.70071 10.4375L9.53911 16.1717L20.1679 5.54289C20.5584 5.15237 21.1916 5.15237 21.5821 5.54289Z"
-                                      clip-rule="evenodd" fill-rule="evenodd"></path>
-                            </g>
-                        </svg>
-                        <span>Présentation de tous les services de WISE Neural et Vital.</span>
+                        <SvgOffer/>
+                        <span>Conseils de coachs professionnels</span>
+                    </li>
+                    <li class="list">
+                        <SvgOffer/>
+                        <span>Analyse cardiaque professionnelle</span>
+                    </li>
+                    <li class="list">
+                        <SvgOffer/>
+                        <span>Analyse du stress et de l’anxiété</span>
+                    </li>
+                    <li class="list">
+                        <SvgOffer/>
+                        <span>1 bilan par mois avec un conseiller WISE</span>
+                    </li>
+                    <li class="list">
+                        <SvgOffer/>
+                        <span>Diverses exercices d’étirement, posture et entrainement</span>
                     </li>
                 </ul>
             </div>
-            <img class="arrows" src="/images/arrow-right.png" on:click={goRight}>
+            <img class="arrows-right" src="/images/arrow-right.png" on:click={goRight}>
         </div>
     {:else if (changeCard === 3)}
         <div class="offers">
-            <img class="arrows" src="/images/arrow-left.png" on:click={goLeft}>
+            <img class="arrows-left" src="/images/arrow-left.png" on:click={goLeft}>
             <div class="card premiumCard">
                 <p class="titleWhatOffer">
-                    Offre Basique</p>
-                <p class="price">Gratuit</p>
+                    Offre Premium</p>
+                <p class="price">30 € / mois</p>
                 <ul class="lists">
                     <li class="list">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
-                            <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path fill="#ffffff"
-                                      d="M21.5821 5.54289C21.9726 5.93342 21.9726 6.56658 21.5821 6.95711L10.2526 18.2867C9.86452 18.6747 9.23627 18.6775 8.84475 18.293L2.29929 11.8644C1.90527 11.4774 1.89956 10.8443 2.28655 10.4503C2.67354 10.0562 3.30668 10.0505 3.70071 10.4375L9.53911 16.1717L20.1679 5.54289C20.5584 5.15237 21.1916 5.15237 21.5821 5.54289Z"
-                                      clip-rule="evenodd" fill-rule="evenodd"></path>
-                            </g>
-                        </svg>
-                        <span>Fréquence cardiaque sur les deux dernières semaines.</span>
+                        <SvgOffer/>
+                        <span>Offre Basic + Offre Standard</span>
                     </li>
                     <li class="list">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
-                            <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path fill="#ffffff"
-                                      d="M21.5821 5.54289C21.9726 5.93342 21.9726 6.56658 21.5821 6.95711L10.2526 18.2867C9.86452 18.6747 9.23627 18.6775 8.84475 18.293L2.29929 11.8644C1.90527 11.4774 1.89956 10.8443 2.28655 10.4503C2.67354 10.0562 3.30668 10.0505 3.70071 10.4375L9.53911 16.1717L20.1679 5.54289C20.5584 5.15237 21.1916 5.15237 21.5821 5.54289Z"
-                                      clip-rule="evenodd" fill-rule="evenodd"></path>
-                            </g>
-                        </svg>
-                        <span>Podomètre et historique de pas des 2 dernières semaines.</span>
+                        <SvgOffer/>
+                        <span>Vidéo sur mesure selon la demande client</span>
                     </li>
                     <li class="list">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
-                            <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path fill="#ffffff"
-                                      d="M21.5821 5.54289C21.9726 5.93342 21.9726 6.56658 21.5821 6.95711L10.2526 18.2867C9.86452 18.6747 9.23627 18.6775 8.84475 18.293L2.29929 11.8644C1.90527 11.4774 1.89956 10.8443 2.28655 10.4503C2.67354 10.0562 3.30668 10.0505 3.70071 10.4375L9.53911 16.1717L20.1679 5.54289C20.5584 5.15237 21.1916 5.15237 21.5821 5.54289Z"
-                                      clip-rule="evenodd" fill-rule="evenodd"></path>
-                            </g>
-                        </svg>
-                        <span>Accès à certaines vidéos de présentation des exercices.</span>
+                        <SvgOffer/>
+                        <span>Coach dédié et qui adapte son programme selon la demande client</span>
                     </li>
                     <li class="list">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
-                            <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path fill="#ffffff"
-                                      d="M21.5821 5.54289C21.9726 5.93342 21.9726 6.56658 21.5821 6.95711L10.2526 18.2867C9.86452 18.6747 9.23627 18.6775 8.84475 18.293L2.29929 11.8644C1.90527 11.4774 1.89956 10.8443 2.28655 10.4503C2.67354 10.0562 3.30668 10.0505 3.70071 10.4375L9.53911 16.1717L20.1679 5.54289C20.5584 5.15237 21.1916 5.15237 21.5821 5.54289Z"
-                                      clip-rule="evenodd" fill-rule="evenodd"></path>
-                            </g>
-                        </svg>
-                        <span>Présentation de tous les services de WISE Neural et Vital.</span>
+                        <SvgOffer/>
+                        <span>Tester en avant-première les nouvelles fonctionnalités</span>
+                    </li>
+                    <li class="list">
+                        <SvgOffer/>
+                        <span>1 bilan par séance</span>
                     </li>
                 </ul>
             </div>
-            <img class="arrows" src="/images/arrow-right.png" on:click={goRight}>
+            <img class="arrows-right" src="/images/arrow-right.png" on:click={goRight}>
         </div>
     {/if}
     <button class="freeAction" on:click={validateSelected}>{defaultOffer}</button>
@@ -271,11 +213,12 @@
 
     .global-background {
         width: 100%;
-        height: 100svh;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         position: relative;
+        padding-bottom: 2rem;
     }
 
     .logo {
@@ -311,10 +254,9 @@
     .offers {
         display: flex;
         flex-direction: row;
-        align-items: center;
         justify-content: center;
-        height: 65%;
         gap: 0.25rem;
+        margin-top: 2rem;
     }
 
     .card {
@@ -365,11 +307,6 @@
         align-items: center;
     }
 
-    .list svg {
-        height: 1rem;
-        width: 1rem;
-    }
-
     .list span {
         margin-left: 1rem;
     }
@@ -384,6 +321,7 @@
         color: white;
         padding: 0.5rem;
         box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+        margin-top: 2rem;
     }
 
     ul {
@@ -398,12 +336,23 @@
         text-align: center;
     }
 
-    .arrows {
+    .arrows-left, .arrows-right {
         width: 30px;
         height: 40px;
+        position: absolute;
     }
 
-    .loadPop {
+    .arrows-left {
+        left: 0.5rem;
+        top: 23rem;
+    }
+
+    .arrows-right {
+        right: 0.5rem;
+        top: 23rem;
+    }
+
+    .loadPop, .paymentPop {
         display: flex;
         width: 100%;
     }
