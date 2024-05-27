@@ -3,10 +3,12 @@
     export let name;
     export let date;
     export let message;
+
+    export let textTo;
 </script>
 
 
-<div class="oneCoach">
+<button class="oneCoach" on:click={textTo}>
     <div class="person">
         <img src={whatPerson}>
     </div>
@@ -17,7 +19,7 @@
         </div>
         <p class="message">{message}</p>
     </div>
-</div>
+</button>
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
@@ -31,6 +33,7 @@
         width: 90%;
         padding: 0.25rem 0.15rem;
         margin: 0.5rem 0;
+        background-color: transparent;
     }
 
     .person {
@@ -84,5 +87,6 @@
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 180px;
+        text-align: left;
     }
 </style>

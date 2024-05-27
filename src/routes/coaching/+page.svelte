@@ -5,7 +5,6 @@
     import CoachingHome from "$lib/CoachingHome.svelte";
     import {coachMessageStore} from "$lib/stores/coachMessage.store.js";
     import {coachStore} from "$lib/stores/coach.store.js";
-    import {offerStore} from "$lib/stores/offer.store.js";
 
     let message1 = $coachMessageStore.message1;
     let message2 = $coachMessageStore.message2;
@@ -44,6 +43,10 @@
 
     function toggleDelete() {
         deleteSwitch = !deleteSwitch
+    }
+
+    function newCoach() {
+        goto("/coaching/coachs-list")
     }
 
     function deleteCoach1() {
@@ -123,6 +126,34 @@
             coach7: false,
         }))
     }
+
+    function textToCoach1() {
+        goto("/coaching/coach-1")
+    }
+
+    function textToCoach2() {
+        goto("/coaching/coach-2")
+    }
+
+    function textToCoach3() {
+        goto("/coaching/coach-3")
+    }
+
+    function textToCoach4() {
+        goto("/coaching/coach-4")
+    }
+
+    function textToCoach5() {
+        goto("/coaching/coach-5")
+    }
+
+    function textToCoach6() {
+        goto("/coaching/coach-6")
+    }
+
+    function textToCoach7() {
+        goto("/coaching/coach-7")
+    }
 </script>
 <div class="globalBody">
     {#if (popUpSwitch === true)}
@@ -135,49 +166,52 @@
             <path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"></path>
         </svg>
     </button>
+    <button class="plusButton" on:click={newCoach}>
+        <img class="plus" src="/images/plus.png" alt="add">
+    </button>
     <div class="notif">
         <Notification {togglePopUp}/>
     </div>
     <img class="logo" src="/images/wise-logo.png" alt="wise-logo">
     <h1>Mes conversations :</h1>
     {#if ($coachStore.coach1 === true)}
-        <CoachingHome whatPerson="/coach/coach-1.jpeg" name="Guillaume" date="Aujourd'hui - 13h22" message={message1}/>
+        <CoachingHome whatPerson="/coach/coach-1.jpeg" name="Guillaume" date="Aujourd'hui - 13h22" message={message1} textTo={textToCoach1}/>
         {#if (deleteSwitch === true)}
             <p class="deleteMessage" on:click={deleteCoach1}>Supprimer</p>
         {/if}
     {/if}
     {#if ($coachStore.coach2 === true)}
-        <CoachingHome whatPerson="/coach/coach-2.jpeg" name="Gaël" date="Aujourd'hui - 10h59" message={message2}/>
+        <CoachingHome whatPerson="/coach/coach-2.jpeg" name="Gaël" date="Aujourd'hui - 10h59" message={message2} textTo={textToCoach2}/>
         {#if (deleteSwitch === true)}
             <p class="deleteMessage" on:click={deleteCoach2}>Supprimer</p>
         {/if}
     {/if}
     {#if ($coachStore.coach3 === true)}
-        <CoachingHome whatPerson="/coach/coach-3.jpeg" name="Éric" date="Aujourd'hui - 8h42" message={message3}/>
+        <CoachingHome whatPerson="/coach/coach-3.jpeg" name="Éric" date="Aujourd'hui - 8h42" message={message3} textTo={textToCoach3}/>
         {#if (deleteSwitch === true)}
             <p class="deleteMessage" on:click={deleteCoach3}>Supprimer</p>
         {/if}
     {/if}
     {#if ($coachStore.coach4 === true)}
-        <CoachingHome whatPerson="/coach/coach-4.jpeg" name="Grégory" date="Hier - 11h16" message={message4}/>
+        <CoachingHome whatPerson="/coach/coach-4.jpeg" name="Grégory" date="Hier - 11h16" message={message4} textTo={textToCoach4}/>
         {#if (deleteSwitch === true)}
             <p class="deleteMessage" on:click={deleteCoach4}>Supprimer</p>
         {/if}
     {/if}
     {#if ($coachStore.coach5 === true)}
-        <CoachingHome whatPerson="/coach/coach-5.png" name="Fredryk" date="2 jours - 16h31" message={message5}/>
+        <CoachingHome whatPerson="/coach/coach-5.jpeg" name="Fredryk" date="2 jours - 16h31" message={message5} textTo={textToCoach5}/>
         {#if (deleteSwitch === true)}
             <p class="deleteMessage" on:click={deleteCoach5}>Supprimer</p>
         {/if}
     {/if}
     {#if ($coachStore.coach6 === true)}
-        <CoachingHome whatPerson="/coach/coach-6.jpeg" name="Jean-Christophe" date="1 sem - 14h02" message={message6}/>
+        <CoachingHome whatPerson="/coach/coach-6.jpeg" name="Jean-Christophe" date="1 sem - 14h02" message={message6} textTo={textToCoach6}/>
         {#if (deleteSwitch === true)}
             <p class="deleteMessage" on:click={deleteCoach6}>Supprimer</p>
         {/if}
     {/if}
     {#if ($coachStore.coach7 === true)}
-        <CoachingHome whatPerson="/coach/coach-7.png" name="Caroline" date="1 mois - 17h18" message={message7}/>
+        <CoachingHome whatPerson="/coach/coach-7.jpeg" name="Caroline" date="1 mois - 17h18" message={message7} textTo={textToCoach7}/>
         {#if (deleteSwitch === true)}
             <p class="deleteMessage" on:click={deleteCoach7}>Supprimer</p>
         {/if}
@@ -202,7 +236,7 @@
         flex-direction: column;
         align-items: center;
         height: 100%;
-        padding-bottom: 4rem;
+        padding-bottom: 8rem;
         position: relative;
     }
 
@@ -251,7 +285,7 @@
         width: 100%;
     }
 
-    .delete {
+    .delete, .plusButton {
         width: 50px;
         height: 50px;
         border-radius: 50%;
@@ -262,6 +296,9 @@
         justify-content: center;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.164);
         position: absolute;
+    }
+
+    .delete {
         top: 0.75rem;
         left: 0.75rem;
     }
@@ -280,5 +317,16 @@
         color: #BC1823;
         font-style: italic;
         margin: 0;
+    }
+
+    .plusButton {
+        position: absolute;
+        bottom: 4.5rem;
+        right: 1rem;
+    }
+
+    .plus {
+        width: 12px;
+        height: 12px;
     }
 </style>
