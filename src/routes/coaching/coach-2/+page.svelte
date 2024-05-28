@@ -30,9 +30,11 @@
             coach6: old.coach6,
             coach7: old.coach7,
         }))
-        $arrayOfMessagesStore = [...$arrayOfMessagesStore, {
-            message: messageValue
-        }]
+        arrayOfMessagesStore.update((old) => {
+            const idx = old.findIndex((coach) => coach.name === 2);
+            old[idx].messages.push(messageValue)
+            return [...old];
+        })
         messageValue = ''
     }
 </script>
@@ -49,8 +51,8 @@
         </div>
     </div>
     <div class="allMessages">
-        {#each $arrayOfMessagesStore as messageText}
-            <p class="messageTo">{messageText.message}</p>
+        {#each $arrayOfMessagesStore[1].messages as message}
+            <p class="messageTo">{message}</p>
         {/each}
     </div>
 
@@ -134,11 +136,11 @@
         width: 70%;
         font-family: Poppins, sans-serif;
         font-size: 0.75rem;
-        border: 2px solid #41C1BA;
-        color: black;
+        border: 2px solid white;
+        color: white;
         padding: 0.5rem;
         border-radius: 18px;
-        background-color: #FFFFFF;
+        background-color: #41C1BA;
         align-self: end;
         word-wrap: break-word;
         overflow-wrap: break-word;

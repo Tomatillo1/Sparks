@@ -83,6 +83,12 @@
         bottom: 0;
     }
 
+    @media screen and (min-width: 1024px){
+        #navbar {
+            width: 375px;
+        }
+    }
+
     .buttonNavbar {
         width: 20%;
         background-color: #41C1BA;

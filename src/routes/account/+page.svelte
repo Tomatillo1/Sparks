@@ -149,6 +149,12 @@
         bottom: 0;
     }
 
+    @media screen and (min-width: 1024px){
+        #navbar {
+            width: 375px;
+        }
+    }
+
     .buttonNavbar {
         width: 20%;
         background-color: #41C1BA;
@@ -262,6 +268,7 @@
         flex-direction: row;
         width: 80%;
         margin-top: 1.5rem;
+        gap: 1rem;
     }
 
     .stat1, .stat2 {

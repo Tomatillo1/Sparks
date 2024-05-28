@@ -47,7 +47,6 @@
         <Notification {togglePopUp}/>
     </div>
     <img class="backGroundSup" src="/images/design-superieur-wise.png" alt="">
-    <img class="backGroundInf" src="/images/design-inferieur-wise.png" alt="">
     <img class="logo" src="/Logo-Wise-Vital.png" alt="vital-logo">
     <NeuralOrVital titleService={titleServcice} textService={textService}/>
     <div class="videos">
@@ -77,6 +76,12 @@
         height: 8%;
         position: fixed;
         bottom: 0;
+    }
+
+    @media screen and (min-width: 1024px){
+        #navbar {
+            width: 375px;
+        }
     }
 
     .buttonNavbar {
@@ -112,15 +117,6 @@
         left: 0;
         z-index: -1;
 
-    }
-
-    .backGroundInf {
-        width: 50%;
-        height: 50%;
-        position: absolute;
-        left: 0;
-        bottom: -8rem;
-        z-index: -1;
     }
 
     .notif {

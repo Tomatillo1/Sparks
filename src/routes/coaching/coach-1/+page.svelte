@@ -40,9 +40,11 @@
             coach6: old.coach6,
             coach7: old.coach7,
         }))
-        $arrayOfMessagesStore = [...$arrayOfMessagesStore, {
-            message: messageValue
-        }]
+        arrayOfMessagesStore.update((old) => {
+            const idx = old.findIndex((coach) => coach.name === 1);
+            old[idx].messages.push(messageValue)
+            return [...old];
+        })
         messageValue = ''
     }
 </script>
@@ -73,8 +75,8 @@
             derniers cours et voir votre évolution. Ils pourront donc accéder à leurs données directement depuis leur
             compte. Si ils n’ont pas les accès, contactez nous afin que nous puissions les aider dans les plus brefs
             délais.<br>Bonne journée à vous, Guillaume.</p>
-        {#each $arrayOfMessagesStore as messageText}
-            <p class="messageTo">{messageText.message}</p>
+        {#each $arrayOfMessagesStore[0].messages as message}
+            <p class="messageTo">{message}</p>
         {/each}
     </div>
 
@@ -158,11 +160,11 @@
         width: 70%;
         font-family: Poppins, sans-serif;
         font-size: 0.75rem;
-        border: 2px solid #41C1BA;
-        color: black;
+        border: 2px solid white;
+        color: white;
         padding: 0.5rem;
         border-radius: 18px;
-        background-color: #FFFFFF;
+        background-color: #41C1BA;
         align-self: end;
         word-wrap: break-word;
         overflow-wrap: break-word;
@@ -177,10 +179,10 @@
         font-family: Poppins, sans-serif;
         font-size: 0.75rem;
         border: 2px solid #41C1BA;
-        color: white;
+        color: black;
         padding: 0.5rem;
         border-radius: 18px;
-        background-color: #41C1BA;
+        background-color: white;
         word-wrap: break-word;
         overflow-wrap: break-word;
         box-sizing: border-box;
