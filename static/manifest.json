@@ -3,7 +3,7 @@
   "short_name": "Wise",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "white",
+  "theme_color": "#41C1BA",
   "background_color": "#41C1BA",
   "icons": [
     {
