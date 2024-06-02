@@ -156,4 +156,14 @@
         width: 100%;
         justify-content: center;
     }
+
+    @media screen and (min-width: 1024px) {
+        .header {
+            width: 375px;
+        }
+
+        .globalMessage {
+            height: 100svh;
+        }
+    }
 </style>

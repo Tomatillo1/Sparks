@@ -36,6 +36,12 @@
 
     }
 
+    @media screen and (min-width: 1024px) {
+        .footer {
+            width: 375px;
+        }
+    }
+
     .messageBox {
         width: fit-content;
         height: 40px;

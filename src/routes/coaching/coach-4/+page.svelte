@@ -30,9 +30,11 @@
             coach6: old.coach6,
             coach7: old.coach7,
         }))
-        $arrayOfMessagesStore = [...$arrayOfMessagesStore, {
-            message: messageValue
-        }]
+        arrayOfMessagesStore.update((old) => {
+            const idx = old.findIndex((coach) => coach.name === 4);
+            old[idx].messages.push(messageValue)
+            return [...old];
+        })
         messageValue = ''
     }
 </script>
@@ -58,8 +60,8 @@
             derniers cours et voir votre évolution. Ils pourront donc accéder à leurs données directement depuis leur
             compte. Si ils n’ont pas les accès, contactez nous afin que nous puissions les aider dans les plus brefs
             délais.<br>Bonne journée à vous, Grégory.</p>
-        {#each $arrayOfMessagesStore as messageText}
-            <p class="messageTo">{messageText.message}</p>
+        {#each $arrayOfMessagesStore[3].messages as message}
+            <p class="messageTo">{message}</p>
         {/each}
     </div>
 
@@ -178,5 +180,15 @@
         background-color: #FFFFFF;
         width: 100%;
         justify-content: center;
+    }
+
+    @media screen and (min-width: 1024px) {
+        .header {
+            width: 375px;
+        }
+
+        .globalMessage {
+            height: 100svh;
+        }
     }
 </style>

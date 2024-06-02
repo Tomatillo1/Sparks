@@ -1,11 +1,14 @@
 <script>
-    import {goto} from "$app/navigation";
+    import { goto } from "$app/navigation";
     import Notification from "$lib/Notification.svelte";
     import NotificationPopUp from "$lib/NotificationPopUp.svelte";
-    import {loginStore} from "$lib/stores/login.store.js";
+    import { loginStore } from "$lib/stores/login.store.js";
+    import { offerStore } from "$lib/stores/offer.store.js";
 
     let popUpSwitch = false;
     let name = $loginStore.firstName
+    let offer = $offerStore.offer
+
     function togglePopUp() {
         popUpSwitch = !popUpSwitch
     }
@@ -44,50 +47,62 @@
     <img class="backGroundInf" src="/images/design-inferieur-wise.png" alt="">
     <img class="logo" src="/images/wise-logo.png" alt="wise-logo">
     <h1>Bienvenu {name}</h1>
-    <div class="today">
-        <h2>Aujourd'hui :</h2>
-        <div class="feetData">
-            <p class="statTitle">Objectif podométrique quotidien</p>
-            <div class="allFeetData">
-                <p class="feetNumber">8200/10000</p>
-                <img class="feet" src="/home/feet.jpg" alt="feet">
-                <img class="circle" src="/home/circle.jpg" alt="circle">
+    {#if (offer != 'Neural')}
+        <div class="today">
+            <h2>Aujourd'hui :</h2>
+            <div class="feetData">
+                <p class="statTitle">Objectif podométrique quotidien</p>
+                <div class="allFeetData">
+                    <p class="feetNumber">8200/10000</p>
+                    <img class="feet" src="/home/feet.jpg" alt="feet">
+                    <img class="circle" src="/home/circle.jpg" alt="circle">
+                </div>
+            </div>
+            <div class="feetOthersStats">
+                <img class="feetImg" src="/home/water.jpg" alt="water">
+                <img class="feetImg" src="/home/calories.jpg" alt="calories">
             </div>
         </div>
-        <div class="feetOthersStats">
-            <img class="feetImg" src="/home/water.jpg" alt="water">
-            <img class="feetImg" src="/home/calories.jpg" alt="calories">
-        </div>
-    </div>
+    {/if}
     <div class="history">
         <h2>Historique et activités :</h2>
-        <div class="podoData">
-            <p class="statTitle">Historique podométrique quotidien</p>
-            <img class="podoImg" src="/home/pdo.jpg" alt="podo">
-        </div>
+        {#if (offer != 'Neural')}
+            <div class="podoData">
+                <p class="statTitle">Historique podométrique quotidien</p>
+                <img class="podoImg" src="/home/pdo.jpg" alt="podo">
+            </div>
+        {/if}
         <div class="twoStats">
-            <div class="heartData">
-                <p class="statTitle2">Historique fréquence cardiaque :</p>
-                <img class="heartImg" src="/home/heart.jpg" alt="heart">
-            </div>
-            <div class="nextExe">
-                <p class="statTitle2">Exercice suivant :</p>
-                <img class="nextExeImg" src="/home/person-work.jpg" alt="person">
-                <p class="statTitle3">La posture au travail <br>Niv.3</p>
-            </div>
+            {#if (offer != 'Neural')}
+                <div class="heartData">
+                    <p class="statTitle2">Historique fréquence cardiaque :</p>
+                    <img class="heartImg" src="/home/heart.jpg" alt="heart">
+                </div>
+            {/if}
+            {#if (offer != 'Vital')}
+                <div class="nextExe">
+                    <p class="statTitle2">Exercice suivant :</p>
+                    <img class="nextExeImg" src="/home/person-work.jpg" alt="person">
+                    <p class="statTitle3">La posture au travail <br>Niv.3</p>
+                </div>
+            {/if}
         </div>
-        <div class="lastActivity">
-            <p class="statTitle">Dernières activités :</p>
-            <div class="exo1">
-                <img class="exo1Img" src="/home/person-work.jpg" alt="person">
-                <p class="statTitle2">La posture au travail <br>Niv.3</p>
+        {#if (offer != 'Neural')}
+            <div class="lastActivity">
+                <p class="statTitle">Dernières activités :</p>
+                <div class="exo1">
+                    <img class="exo1Img" src="/home/person-work.jpg" alt="person">
+                    <p class="statTitle2">La posture au travail <br>Niv.3</p>
+                </div>
+                <div class="exo2">
+                    <img class="exo2Img" src="/images/account-stats.jpg" alt="person">
+                    <p class="statTitle2">Rythme cardiaque <br>Niv.1</p>
+                </div>
             </div>
-            <div class="exo2">
-                <img class="exo2Img" src="/images/account-stats.jpg" alt="person">
-                <p class="statTitle2">Rythme cardiaque <br>Niv.1</p>
-            </div>
-        </div>
+        {/if}
     </div>
+    <h2 class="bilan">Vos bilans personnalisés</h2>
+    <p class="bilanText">Aucun bilan personnalisés</p>
 </div>
 
 <div id="navbar">
@@ -111,7 +126,7 @@
         bottom: 0;
     }
 
-    @media screen and (min-width: 1024px){
+    @media screen and (min-width: 1024px) {
         #navbar {
             width: 375px;
         }
@@ -160,6 +175,12 @@
         z-index: -1;
     }
 
+    @media screen and (min-width: 1024px) {
+        .backGroundInf {
+            left: 0;
+        }
+    }
+
     .notif {
         position: absolute;
         right: 0.75rem;
@@ -189,6 +210,7 @@
         font-size: 1.25rem;
         color: #41C1BA;
         margin: 0;
+        text-align: center;
     }
 
     .feetData, .podoData, .lastActivity {
@@ -297,5 +319,18 @@
         height: 50px;
         object-fit: cover;
         border-radius: 18px;
+    }
+
+    .bilan {
+        margin-top: 1rem;
+    }
+
+    .bilanText {
+        font-family: Poppins, sans-serif;
+        font-size: 1rem;
+        color: #41C1BA;
+        margin: 0;
+        text-align: center;
+        font-style: italic;
     }
 </style>

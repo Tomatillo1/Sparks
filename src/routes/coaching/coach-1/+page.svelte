@@ -202,4 +202,14 @@
         width: 100%;
         z-index: 100;
     }
+
+    @media screen and (min-width: 1024px) {
+        .header {
+            width: 375px;
+        }
+
+        .globalMessage {
+            height: 100svh;
+        }
+    }
 </style>

@@ -98,6 +98,12 @@
         z-index: -1;
     }
 
+    @media screen and (min-width: 1024px) {
+        .backGroundSup {
+            z-index: -1;
+        }
+    }
+
     .loadPop {
         display: flex;
         width: 100%;

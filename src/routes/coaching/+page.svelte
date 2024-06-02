@@ -250,6 +250,16 @@
         bottom: 0;
     }
 
+    @media screen and (min-width: 1024px) {
+        #navbar {
+            width: 375px;
+        }
+
+        .globalBody {
+            height: 100svh;
+        }
+    }
+
     .buttonNavbar {
         width: 20%;
         background-color: #41C1BA;

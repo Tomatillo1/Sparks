@@ -9,7 +9,7 @@
     let wichOffer = $offerStore.offer;
     let defaultOffer = $offerStore.selected;
     let changeCard = $offerStore.card;
-    let whatCard = 'Vital';
+    let whatCard = 'Wise+';
     let load = false;
     let payment = false;
 

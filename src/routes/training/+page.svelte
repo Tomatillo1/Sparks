@@ -154,6 +154,12 @@
         z-index: -1;
     }
 
+    @media screen and (min-width: 1024px) {
+        .backGroundInf {
+            left: 0;
+        }
+    }
+
     .notif {
         position: absolute;
         right: 0.75rem;

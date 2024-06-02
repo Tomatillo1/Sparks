@@ -35,6 +35,12 @@
         align-items: center;
     }
 
+    @media screen and (min-width: 1024px) {
+        .backgroundBlack {
+            width: 375px;
+        }
+    }
+
     .card {
         max-width: 80%;
         border-width: 1px;

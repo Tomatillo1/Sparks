@@ -61,7 +61,7 @@
         font-family: Poppins, sans-serif;
     }
 
-    .backBlack{
+    .backBlack {
         background-color: rgb(0, 0, 0, 0.8);
         width: 100%;
         height: 100svh;
@@ -71,15 +71,22 @@
         justify-content: center;
         align-items: center;
     }
-    .tel {
-        margin-top: 1rem;
+
+    @media screen and (min-width: 1024px) {
+        .backBlack {
+            width: 375px;
+        }
     }
 
-    .back {
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        top: 0.75rem;
-        right: 0.75rem;
-    }
+        .tel {
+            margin-top: 1rem;
+        }
+
+        .back {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+        }
 </style>

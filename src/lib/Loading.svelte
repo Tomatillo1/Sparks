@@ -19,6 +19,12 @@
         align-items: center;
     }
 
+    @media screen and (min-width: 1024px) {
+        .backLoad {
+            width: 375px;
+        }
+    }
+
     .loading svg polyline {
         fill: none;
         stroke-width: 3;
