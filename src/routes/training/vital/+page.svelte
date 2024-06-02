@@ -55,6 +55,8 @@
         <VideoTraining whatVideo="/videos/vital3.png" whatLink={video7}/>
         <VideoTraining whatVideo="/videos/vital4.png" whatLink={video8}/>
     </div>
+    <h2>Vos vidéos personnalisées</h2>
+    <p>Aucune vidéos</p>
 </div>
 <div id="navbar">
     <button class="buttonNavbar"><img class="navImage" src="/navbar/halteres-blue.png" alt="" on:click={trainingPage}>
@@ -68,6 +70,8 @@
 </div>
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
     #navbar {
         background-color: #41C1BA;
         display: flex;
@@ -108,6 +112,7 @@
         flex-direction: column;
         align-items: center;
         position: relative;
+        padding-bottom: 11rem;
     }
 
     .backGroundSup {
@@ -135,9 +140,27 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
+        height: 60%;
         flex-grow: 1;
         gap: 1rem;
         margin-top: 1rem;
-        padding-bottom: 2rem;
+    }
+
+
+    h2 {
+        font-family: Poppins, sans-serif;
+        font-size: 1.5rem;
+        color: #41C1BA;
+        margin: 0 0 0 0;
+    }
+
+    p {
+        font-family: Poppins, sans-serif;
+        font-size: 1rem;
+        color: #41C1BA;
+        text-align: center;
+        width: 85%;
+        margin: 0;
+        font-style: italic;
     }
 </style>

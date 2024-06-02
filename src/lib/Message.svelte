@@ -4,33 +4,6 @@
 </script>
 <div class="footer">
     <div class="messageBox">
-        <div class="fileUploadWrapper">
-            <label for="file">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 337 337">
-                    <circle
-                            stroke-width="20"
-                            stroke="#41C1BA"
-                            fill="none"
-                            r="158.5"
-                            cy="168.5"
-                            cx="168.5"
-                    ></circle>
-                    <path
-                            stroke-linecap="round"
-                            stroke-width="25"
-                            stroke="#41C1BA"
-                            d="M167.759 79V259"
-                    ></path>
-                    <path
-                            stroke-linecap="round"
-                            stroke-width="25"
-                            stroke="#41C1BA"
-                            d="M79 167.138H259"
-                    ></path>
-                </svg>
-            </label>
-            <input type="file" id="file" name="file"/>
-        </div>
         <input required="" placeholder="Message..." type="text" id="messageInput" bind:value/>
         <button id="sendButton" on:click={sendMessage}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 664 663">
@@ -73,25 +46,6 @@
         padding: 0 15px;
         border-radius: 10px;
         border: 1px solid #41C1BA;
-    }
-
-    #file {
-        display: none;
-
-    }
-
-    .fileUploadWrapper label {
-        cursor: pointer;
-        width: fit-content;
-        height: fit-content;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-    }
-
-    .fileUploadWrapper label svg {
-        height: 18px;
     }
 
     #messageInput {

@@ -1,8 +1,10 @@
 <script>
-    import {goto} from "$app/navigation";
+    import { goto } from "$app/navigation";
     import TrainingChoice from "$lib/TrainingChoice.svelte";
     import Notification from "$lib/Notification.svelte";
     import NotificationPopUp from "$lib/NotificationPopUp.svelte";
+    import PopupTraining from "$lib/PopupTraining.svelte";
+    import {offerStore} from "$lib/stores/offer.store.js";
 
     const titleService1 = "Exercices posturaux :";
     const titleService2 = "Exercices de respiration :";
@@ -10,6 +12,7 @@
     const textService2 = "Retrouvez des vidéos de professionnels et des exercices détaillés pour apprendre à mieux comprendre votre respiration, et  apprendre à bien faire les exercices pour progresser.";
 
     let popUpSwitch = false;
+    let trainPopup = false;
 
     function togglePopUp() {
         popUpSwitch = !popUpSwitch
@@ -36,15 +39,32 @@
     }
 
     function trainingNeural() {
-        goto("/training/neural")
+        if ($offerStore.offer === 'Vital') {
+            trainPopup = true
+        } else {
+            goto("/training/neural")
+        }
     }
 
     function trainingVital() {
-        goto("/training/vital")
+        if ($offerStore.offer === 'Neural') {
+            trainPopup = true
+        } else {
+            goto("/training/vital")
+        }
+    }
+
+    function closeTrain() {
+        trainPopup = false
     }
 </script>
 
 <div class="global-background">
+    {#if trainPopup === true}
+        <div class="popupTrain">
+            <PopupTraining {closeTrain}/>
+        </div>
+    {/if}
     {#if (popUpSwitch === true)}
         <div class="notifPopUp">
             <NotificationPopUp {togglePopUp}/>
@@ -83,7 +103,7 @@
         bottom: 0;
     }
 
-    @media screen and (min-width: 1024px){
+    @media screen and (min-width: 1024px) {
         #navbar {
             width: 375px;
         }
@@ -140,7 +160,7 @@
         top: 0.75rem;
     }
 
-    .notifPopUp {
+    .notifPopUp, .popupTrain {
         display: flex;
         width: 100%;
     }

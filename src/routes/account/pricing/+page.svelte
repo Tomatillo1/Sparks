@@ -9,7 +9,7 @@
     let wichOffer = $offerStore.offer;
     let defaultOffer = $offerStore.selected;
     let changeCard = $offerStore.card;
-    let whatCard = 'Basique';
+    let whatCard = 'Vital';
     let load = false;
     let payment = false;
 
@@ -20,13 +20,13 @@
     function goRight() {
         if (changeCard === 3) {
             changeCard = 1
-            whatCard = 'Basique'
+            whatCard = 'Vital'
         } else {
             changeCard = changeCard + 1;
             if (changeCard === 2) {
-                whatCard = 'Standard'
+                whatCard = 'Neural'
             } else {
-                whatCard = 'Premium'
+                whatCard = 'Wise+'
             }
         }
         if (wichOffer !== whatCard) {
@@ -40,13 +40,13 @@
     function goLeft() {
         if (changeCard === 1) {
             changeCard = 3
-            whatCard = 'Premium'
+            whatCard = 'Wise+'
         } else {
             changeCard = changeCard - 1;
             if (changeCard === 2) {
-                whatCard = 'Standard'
+                whatCard = 'Neural'
             } else {
-                whatCard = 'Basique'
+                whatCard = 'Vital'
             }
         }
         if (wichOffer !== whatCard) {
@@ -105,24 +105,41 @@
             <img class="arrows-left" src="/images/arrow-left.png" on:click={goLeft}>
             <div class="card freeCard">
                 <p class="titleWhatOffer">
-                    Offre Basique</p>
-                <p class="price">Gratuit</p>
+                    Offre Vital</p>
+                <p class="price">12,99 € / mois</p>
+                <p class="price">Sans engagement</p>
                 <ul class="lists">
                     <li class="list">
                         <SvgOffer/>
-                        <span>Fréquence cardiaque des 2 dernières semaines</span>
+                        <span>Accès complet à toutes les données en lien avec le rythme cardiaque</span>
                     </li>
                     <li class="list">
                         <SvgOffer/>
-                        <span>Podomètre et historique de pas des 2 dernières semaines</span>
+                        <span>Historique cardiaque</span>
                     </li>
                     <li class="list">
                         <SvgOffer/>
-                        <span>Accès à certaines vidéos de présentation des exercices</span>
+                        <span>Apnée du sommeil</span>
                     </li>
                     <li class="list">
                         <SvgOffer/>
-                        <span>Présentation de tous les services de WISE (Neural et Vital)</span>
+                        <span>Historique podométrique</span>
+                    </li>
+                    <li class="list">
+                        <SvgOffer/>
+                        <span>Nombre de pas</span>
+                    </li>
+                    <li class="list">
+                        <SvgOffer/>
+                        <span>Hydratation quotidienne</span>
+                    </li>
+                    <li class="list">
+                        <SvgOffer/>
+                        <span>Accès à toutes les vidéos WISE VITAL</span>
+                    </li>
+                    <li class="list">
+                        <SvgOffer/>
+                        <span>Communication avec 1 coach</span>
                     </li>
                 </ul>
             </div>
@@ -133,40 +150,37 @@
             <img class="arrows-left" src="/images/arrow-left.png" on:click={goLeft}>
             <div class="card standardCard">
                 <p class="titleWhatOffer">
-                    Offre Standard</p>
-                <p class="price">10 € / mois</p>
+                    Offre Neural</p>
+                <p class="price">17,99 € / mois</p>
+                <p class="price">Sans engagement</p>
                 <ul class="lists">
                     <li class="list">
                         <SvgOffer/>
-                        <span>Offre Basique</span>
+                        <span>Accès complet à toutes les données en lien avec la mobilité du corps</span>
                     </li>
                     <li class="list">
                         <SvgOffer/>
-                        <span>Historique illimité d'activité</span>
+                        <span>Irrégularité de la marche</span>
                     </li>
                     <li class="list">
                         <SvgOffer/>
-                        <span>Accès à des centaines de vidéos supplémentaires</span>
+                        <span>Temps de double appui</span>
                     </li>
                     <li class="list">
                         <SvgOffer/>
-                        <span>Conseils de coachs professionnels</span>
+                        <span>Vitesse de marche</span>
                     </li>
                     <li class="list">
                         <SvgOffer/>
-                        <span>Analyse cardiaque professionnelle</span>
+                        <span>Accès à toutes les vidéos WISE NEURAL</span>
                     </li>
                     <li class="list">
                         <SvgOffer/>
-                        <span>Analyse du stress et de l’anxiété</span>
+                        <span>Communication avec 1 coach spécialisé</span>
                     </li>
                     <li class="list">
                         <SvgOffer/>
-                        <span>1 bilan par mois avec un conseiller WISE</span>
-                    </li>
-                    <li class="list">
-                        <SvgOffer/>
-                        <span>Diverses exercices d’étirement, posture et entrainement</span>
+                        <span>Suivi 1 fois par trimestre pour un bilan de mobilité</span>
                     </li>
                 </ul>
             </div>
@@ -177,28 +191,25 @@
             <img class="arrows-left" src="/images/arrow-left.png" on:click={goLeft}>
             <div class="card premiumCard">
                 <p class="titleWhatOffer">
-                    Offre Premium</p>
-                <p class="price">30 € / mois</p>
+                    Offre Wise+</p>
+                <p class="price">29,99 € / mois</p>
+                <p class="price">Sans engagement</p>
                 <ul class="lists">
                     <li class="list">
                         <SvgOffer/>
-                        <span>Offre Basic + Offre Standard</span>
+                        <span>Offre Vital + Offre Neural</span>
                     </li>
                     <li class="list">
                         <SvgOffer/>
-                        <span>Vidéo sur mesure selon la demande client</span>
+                        <span>L’utilisateur peut communiquer simultanément avec plusieurs coachs</span>
                     </li>
                     <li class="list">
                         <SvgOffer/>
-                        <span>Coach dédié et qui adapte son programme selon la demande client</span>
+                        <span>Fonctionnalités bêta en avant première</span>
                     </li>
                     <li class="list">
                         <SvgOffer/>
-                        <span>Tester en avant-première les nouvelles fonctionnalités</span>
-                    </li>
-                    <li class="list">
-                        <SvgOffer/>
-                        <span>1 bilan par séance</span>
+                        <span>Suivi régulier 1 à 2 fois par mois avec une équipe de coachs dédiés</span>
                     </li>
                 </ul>
             </div>

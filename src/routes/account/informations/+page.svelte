@@ -2,6 +2,7 @@
     import InformationsForm from "$lib/InformationsForm.svelte";
     import {goto} from "$app/navigation";
     import {loginStore} from "$lib/stores/login.store.js";
+    import {offerStore} from "$lib/stores/offer.store.js";
     import Loading from "$lib/Loading.svelte";
 
     let error = false;
@@ -10,6 +11,9 @@
     function validate() {
         if ($loginStore.email === '' || $loginStore.password === '' || $loginStore.firstName === '' || $loginStore.lastName === '' || $loginStore.birth === '') {
             error = true;
+        } else if ($offerStore.offer === 'Aucune') {
+            load = true;
+            setTimeout(saveAndOffer, 1000)
         } else {
             load = true;
             setTimeout(save, 1000)
@@ -18,6 +22,10 @@
 
     function save() {
         goto("/account")
+    }
+
+    function saveAndOffer() {
+        goto("/account/pricing")
     }
 </script>
 

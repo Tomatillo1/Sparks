@@ -2,6 +2,7 @@
     import CountForm from "$lib/CountForm.svelte";
     import ChangeLog from "$lib/ChangeLog.svelte";
     import {goto} from "$app/navigation";
+    import {offerStore} from "$lib/stores/offer.store.js";
     import {loginStore} from "$lib/stores/login.store.js";
 
     let bool2 = false
@@ -9,6 +10,11 @@
     function goAccountForm() {
         if ($loginStore.email !== '' && $loginStore.password !== '') {
             goto("/account/informations")
+            offerStore.update((old) => ({
+                card: old.card,
+                offer: "Aucune",
+                selected : "Choisir cette offre",
+            }))
         } else {
             bool2 = true
         }
