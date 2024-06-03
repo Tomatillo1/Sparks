@@ -23,6 +23,12 @@
         align-items: center;
     }
 
+    @media screen and (min-width: 1024px) {
+        .backgroundBlack {
+            width: 375px;
+        }
+    }
+
     .error {
         font-family: Poppins, sans-serif;
         width: 80%;

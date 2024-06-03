@@ -46,7 +46,7 @@
     <img class="backGroundSup" src="/images/design-superieur-wise.png" alt="">
     <img class="backGroundInf" src="/images/design-inferieur-wise.png" alt="">
     <img class="logo" src="/images/wise-logo.png" alt="wise-logo">
-    <h1>Bienvenu {name}</h1>
+    <h1>Bienvenue {name}</h1>
     {#if (offer != 'Neural')}
         <div class="today">
             <h2>Aujourd'hui :</h2>
